@@ -1,5 +1,5 @@
 # Base image with Python
-FROM python:3.12-slim
+FROM python:3.9
 
 # Install system dependencies required by OpenCV
 RUN apt-get update && apt-get install -y \
@@ -14,10 +14,11 @@ WORKDIR /app
 COPY . .
 
 # Install dependencies
-RUN pip install flask ultralytics pillow opencv-python-headless
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
 
 # Tell Docker which port Flask runs on
-EXPOSE 5000
+EXPOSE 7860
 
 # Command to run the app
 CMD ["python", "app.py"]
