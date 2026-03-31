@@ -14,7 +14,20 @@ jobs:
           lfs: true
       - name: Pull LFS files
         run: git lfs pull
-      - name: Push to hub
+      - name: Install huggingface_hub
+        run: pip install huggingface_hub
+      - name: Push to Hugging Face
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push --force https://mahraalh:$HF_TOKEN@huggingface.co/spaces/mahraalh/cola-pepsi-detection main
+        run: |
+          python - <<EOF
+          from huggingface_hub import HfApi
+          api = HfApi()
+          api.upload_folder(
+              folder_path=".",
+              repo_id="mahraalh/cola-pepsi-detection",
+              repo_type="space",
+              token="${{ secrets.HF_TOKEN }}",
+              ignore_patterns=[".git*", ".github*"]
+          )
+          EOF
