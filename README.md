@@ -1,34 +1,23 @@
-# 🥤 Cola vs Pepsi Detector
+# Cola vs Pepsi Detector
 
-A web application that uses a YOLOv8 Oriented Bounding Box (OBB) model to detect and classify **Cola** and **Pepsi** cans in images. Upload a photo and the app will draw bounding boxes around any cans it finds and tell you what it detected.
-
----
-
-## 📸 App Preview
-
-> _Add a screenshot or GIF of your app here after you take one._
-> _You can replace this line with:_ `![App Preview](preview.png)`
+A web application that uses a YOLOv8 Oriented Bounding Box (OBB) model to detect and classify **Cola** and **Pepsi** cans/bottles in images. Upload a photo and the app will classify whether the image is Pepsi or Cola.
 
 ---
 
-## 🧠 What the Model Does
+## App Preview
 
-- Detects **Cola** and **Pepsi** cans in uploaded images
+>`![App Preview](preview.png)`
+
+---
+
+## What the Model Does
+
+- Detects **Cola** and **Pepsi** in uploaded images
 - Draws **oriented bounding boxes (OBB)** around each detected object
 - Returns the **class label** and **confidence score** for each detection
 - Built with **YOLOv8m-OBB** from Ultralytics, trained on a custom dataset of ~300 augmented images collected and labeled via Roboflow
 
-**Model Performance (Test Set):**
-| Metric | Score |
-|--------|-------|
-| mAP50 | 0.962 |
-| mAP50-95 | 0.865 |
-| Cola Recall | 0.993 |
-| Pepsi Precision | 0.976 |
-
----
-
-## 🗂️ Project Structure
+## Project Structure
 
 ```
 model_deployment/
@@ -42,7 +31,7 @@ model_deployment/
 
 ---
 
-## 🚀 Running Locally with Docker
+## Running Locally with Docker
 
 ### Prerequisites
 - [Docker Desktop](https://www.docker.com/products/docker-desktop) installed and running
@@ -67,11 +56,11 @@ docker run -p 5000:5000 cola-pepsi-detector
 
 **4. Open the app**
 
-Go to `http://127.0.0.1:5000` in your browser.
+Go to the mentioned url in your browser.
 
 ---
 
-## 🖥️ Running Locally without Docker
+## Running Locally without Docker
 
 **1. Install dependencies**
 ```bash
@@ -85,11 +74,11 @@ python app.py
 
 **3. Open the app**
 
-Go to `http://127.0.0.1:5000` in your browser.
+Go to your local url and click on it.
 
 ---
 
-## 📖 How to Use the Interface
+## How to Use the Interface
 
 1. Open the app in your browser
 2. Click **Choose File** and select an image containing a Cola or Pepsi can
@@ -100,17 +89,14 @@ Go to `http://127.0.0.1:5000` in your browser.
 
 ---
 
-## ⚠️ Known Issues & Limitations
+## Known Issues & Limitations
 
 - **Small dataset** — the model was trained on ~300 images (augmented from ~50 original images per class), so performance on unusual angles or lighting may vary
 - **Two classes only** — the model can only detect Cola and Pepsi cans; other objects will not be detected
 - **Corrupt annotations** — a small number of images with bounding box coordinates slightly outside the image boundary were skipped during training, which may slightly affect generalization
-- **Imbalanced splits** — augmentation was only applied to the training set, leaving validation and test sets small (19 images each), so evaluation metrics may shift with a single wrong prediction
-- **Development server** — the app runs on Flask's built-in development server, which is not suitable for high-traffic production use
-
 ---
 
-## 🛠️ Built With
+## Built With
 
 - [YOLOv8](https://github.com/ultralytics/ultralytics) — object detection model
 - [Flask](https://flask.palletsprojects.com/) — web framework
@@ -120,6 +106,6 @@ Go to `http://127.0.0.1:5000` in your browser.
 
 ---
 
-## 👩‍💻 Author
+##  Author
 
-**Mahra AlHarmoodi** — S2026_162
+**Mahra AlHarmoodi**
