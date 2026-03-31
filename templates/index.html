@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cola vs Pepsi Detector</title>
+  <style>
+    body { font-family: sans-serif; max-width: 700px; margin: 40px auto; padding: 0 20px; }
+    img { max-width: 100%; margin-top: 20px; border-radius: 8px; }
+    #results { margin-top: 16px; }
+    .detection { background: #f0f4ff; border-left: 4px solid #4f46e5; padding: 8px 12px; margin: 6px 0; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Cola vs Pepsi Detector</h1>
+  <input type="file" id="imageInput" accept="image/*">
+  <button onclick="predict()">Detect</button>
+
+  <div id="results"></div>
+  <img id="resultImg" style="display:none">
+
+  <script>
+    async function predict() {
+      const file = document.getElementById("imageInput").files[0];
+      if (!file) return alert("Please select an image.");
+
+      const formData = new FormData();
+      formData.append("image", file);
+
+      const res = await fetch("/predict", { method: "POST", body: formData });
+      const data = await res.json();
+
+      if (data.error) return alert(data.error);
+
+      // Show annotated image
+      const img = document.getElementById("resultImg");
+      img.src = data.image;
+      img.style.display = "block";
+
+      // Show detections
+      const resultsDiv = document.getElementById("results");
+      if (data.detections.length === 0) {
+        resultsDiv.innerHTML = "<p>No objects detected.</p>";
+      } else {
+        resultsDiv.innerHTML = data.detections.map(d =>
+          `<div class="detection"><strong>${d.label}</strong> — ${(d.confidence * 100).toFixed(1)}% confidence</div>`
+        ).join("");
+      }
+    }
+  </script>
+</body>
+</html>
