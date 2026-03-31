@@ -1,3 +1,12 @@
+---
+title: Cola Pepsi Detection
+emoji: 🥤
+colorFrom: red
+colorTo: blue
+sdk: docker
+pinned: false
+---
+
 # Cola vs Pepsi Detector
 
 A web application that uses a YOLOv8 Oriented Bounding Box (OBB) model to detect and classify **Cola** and **Pepsi** cans/bottles in images. Upload a photo and the app will classify whether the image is Pepsi or Cola.
