@@ -14,7 +14,7 @@ WORKDIR /app
 COPY . .
 
 # Install dependencies
-RUN pip install --no-cache-dir --upgrade -r requirements.txt
+RUN pip install --no-cache-dir --upgrade -r requirenment.txt
 
 
 # Tell Docker which port Flask runs on
