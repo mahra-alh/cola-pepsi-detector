@@ -15,7 +15,7 @@ A web application that uses a YOLOv8 Oriented Bounding Box (OBB) model to detect
 
 ## App Preview
 
->`![App Preview](preview.png)`
+![App Preview](preview.png)
 
 ---
 
